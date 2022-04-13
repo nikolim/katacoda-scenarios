@@ -20,10 +20,11 @@
       docker_container:
         name: MongoDB
         image: mongo
-        ports: 
-            - 27017:27017
         networks: 
           - name: mynetwork
+          - ipv4_address: "10.0.0.1"
+        ports: 
+            - 27017:27017
 
     - name: Add mongo container to inventory
       add_host:
@@ -37,34 +38,13 @@
        dest: /home/node-express-mongo-example
        clone: yes
        update: yes
+       
+       # TODO Build and run the container
      
-    - name: Build Node Container
-      docker_image:
-        name: Node
-        build:
-          path: /home/node-express-mongo-example
-
-    - name: Add node container to inventory
-      add_host:
-        name: Node
-        ansible_connection: docker
-    
      # create seperate play to create react container
     - name: Clone react-frontend repository
       git:
        repo: https://github.com/nikolim/node-express-mongo.git
        dest: /home/react-frontend
-       clone: yes
-       update: yes
-     
-    - name: Build React Container
-      docker_container:
-        name: Node
-        build:
-          path: /home/react-frontend
-
-    - name: Add react container to inventory
-      add_host:
-        name: Node
-        ansible_connection: docker
-        
+       
+         # TODO Build and run the container

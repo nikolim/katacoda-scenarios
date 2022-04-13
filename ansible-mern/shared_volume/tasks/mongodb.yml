@@ -1,12 +1,7 @@
 # - name: MongoDB - Import public key
 #   apt_key:
 #     url: https://www.mongodb.org/static/pgp/server-5.0.asc
-    # state: present
-    # keyserver: hkp://keyserver.ubuntu.com:80
-    # id: EA312927
-
-- name: Import Mongodb public key
-  shell: wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+#     state: present
 
 - name: MongoDB - Add repository
   apt_repository:
@@ -15,11 +10,11 @@
     state: present
     update_cache: yes
 
-
 - name: MongoDB - Install MongoDB
   apt:
     name: mongodb-org
     update_cache: yes
+    force: True
 
 - name: MongoDB - Running state
   service:

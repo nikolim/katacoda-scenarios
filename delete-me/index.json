@@ -1,0 +1,26 @@
+{
+  "title": "delete me",
+  "description": "Delete me",
+  "difficulty": "Intermediate",
+  "time": "1",
+  "details": {
+    "steps": [
+      {
+        "title": "Step 1",
+        "text": "step1.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ansible-centos"
+  }
+}

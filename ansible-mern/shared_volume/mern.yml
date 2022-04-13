@@ -1,0 +1,13 @@
+--- #The MERN main file
+- hosts: nodes
+  remote_user: root
+  vars:
+    #variable needed during node installation
+    var_node: /tmp
+  tasks:    
+    # Install prerequisites    
+    # - include: tasks/prerequisites.yml  
+    # Install MongoDB    
+    - include: tasks/mongodb.yml    
+    # Install Node.js    
+    # - include: tasks/nodejs.yml

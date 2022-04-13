@@ -1,0 +1,70 @@
+---
+- name: Setup MERN stack
+  hosts: localhost
+  tasks:
+    # create seperate play with prerequisites
+    - name: Install git 
+      apt: 
+        name: git
+        
+    - name: Install Docker-py
+      pip:
+        name: docker-py
+    
+    - name: Create docker network 
+      docker_network: 
+        name: mynetwork
+
+    # create seperate play to create mongo container
+    - name: Create Mongo Container
+      docker_container:
+        name: MongoDB
+        image: mongo
+        ports: 
+            - 27017:27017
+        networks: 
+          - name: mynetwork
+
+    - name: Add mongo container to inventory
+      add_host:
+        name: MongoDB
+        ansible_connection: docker
+         
+    # create seperate play to create node container
+    - name: Clone node-express-mongo repository
+      git:
+       repo: https://github.com/nikolim/node-express-mongo.git
+       dest: /home/node-express-mongo-example
+       clone: yes
+       update: yes
+     
+    - name: Build Node Container
+      docker_image:
+        name: Node
+        build:
+          path: /home/node-express-mongo-example
+
+    - name: Add node container to inventory
+      add_host:
+        name: Node
+        ansible_connection: docker
+    
+     # create seperate play to create react container
+    - name: Clone react-frontend repository
+      git:
+       repo: https://github.com/nikolim/node-express-mongo.git
+       dest: /home/react-frontend
+       clone: yes
+       update: yes
+     
+    - name: Build React Container
+      docker_container:
+        name: Node
+        build:
+          path: /home/react-frontend
+
+    - name: Add react container to inventory
+      add_host:
+        name: Node
+        ansible_connection: docker
+        

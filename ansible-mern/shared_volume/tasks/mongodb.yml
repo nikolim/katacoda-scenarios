@@ -1,22 +1,25 @@
-# - name: MongoDB - Import public key
-#   apt_key:
-#     url: https://www.mongodb.org/static/pgp/server-5.0.asc
-#     state: present
+- name: MongoDB - Import public key
+  shell: wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -
 
-- name: MongoDB - Add repository
-  apt_repository:
-    filename: '/etc/apt/sources.list.d/mongodb-org-5.0.list'
-    repo: 'deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/5.0 multiverse'
-    state: present
-    update_cache: yes
+- name: MongoDB - list file for MongoDB
+  shell: echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
 
-- name: MongoDB - Install MongoDB
-  apt:
-    name: mongodb-org
-    update_cache: yes
-    force: True
+- name: MongoDB - APT update
+  shell: apt-get update
 
-- name: MongoDB - Running state
-  service:
-    name: mongod
-    state: started
+- name: MongoDB - Install mongoDB
+  shell: apt-get install -y mongodb-org
+
+# - name: MongoDB - Update APT
+#   apt:
+#     upgrade: yes
+#     update_cache: yes
+
+# - name: MongoDB - Install MongoDB
+#   apt:
+#     name: mongodb-org
+
+# - name: MongoDB - Running state
+#   systemd:
+#     name: mongod
+    # state: started

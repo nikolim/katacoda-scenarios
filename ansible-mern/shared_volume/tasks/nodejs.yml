@@ -1,0 +1,9 @@
+- name: Install node.js
+  apt:
+    name: nodejs
+
+- name: Install npm
+  apt:
+    name: npm
+
+

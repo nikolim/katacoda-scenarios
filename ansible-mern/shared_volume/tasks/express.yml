@@ -1,0 +1,4 @@
+- name: Install express.js
+  npm: 
+    name: express
+    global: yes

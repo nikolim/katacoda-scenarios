@@ -1,0 +1,10 @@
+- name: Install React
+  npm: 
+    name: react
+    global: yes
+
+- name: Install React DOM
+  npm: 
+    name: react-dom
+    global: yes
+

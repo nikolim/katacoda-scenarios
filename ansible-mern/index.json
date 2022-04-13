@@ -58,7 +58,6 @@
     "uilayout": "editor-terminal"
   },
   "backend": {
-    "imageid": "ubuntu:2004			"courseData": "env-init.sh",
-    "
+    "imageid": "ubuntu:2004"
   }
 }

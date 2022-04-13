@@ -47,7 +47,8 @@
       }
     ],
     "intro": {
-      "text": "intro.md"
+      "text": "intro.md",
+      "courseData": "start-docker-container.sh"
     },
     "finish": {
       "text": "finish.md"
@@ -57,6 +58,7 @@
     "uilayout": "editor-terminal"
   },
   "backend": {
-    "imageid": "ubuntu:2004"
+    "imageid": "ubuntu:2004			"courseData": "env-init.sh",
+    "
   }
 }

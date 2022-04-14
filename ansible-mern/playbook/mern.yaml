@@ -75,7 +75,7 @@
         name: React
         image: react
         ports: 
-          - 3000:3000
+          - 3000:80
         networks:
           - name: mynetwork
             ipv4_address: 173.18.0.4
@@ -85,3 +85,5 @@
       add_host:
         name: React
         ansible_connection: docker
+
+    # open port 3000 on host 1 to see the webapp

@@ -25,8 +25,8 @@
         name: MongoDB
         image: mongo
         networks: 
-          - name: mynetwork1
-          - ipv4_address: 173.18.0.2
+          - name: mynetwork
+            ipv4_address: 173.18.0.2
 
     # # might have to control the container afterwards again
     - name: Add mongo container to inventory
@@ -51,7 +51,7 @@
         image: node
         networks:
           - name: mynetwork
-          - ipv4_address: 173.18.0.3
+            ipv4_address: 173.18.0.3
           
     # # might have to control the container afterwards again
     - name: Add node container to inventory
@@ -67,18 +67,18 @@
        clone: yes
        update: yes
     
-    - name: Build node container 
+    - name: Build react container 
       shell: "(cd ~/react-frontend && docker build -t react .)"
 
     - name: Run react docker container
       docker_container:
         name: React
         image: react
-        exposed_ports: 
-          - 3000
+        ports: 
+          - 3000:3000
         networks:
           - name: mynetwork
-          - ipv4_address: 173.18.0.4
+            ipv4_address: 173.18.0.4
        
     # # might have to control the container afterwards again
     - name: Add react container to inventory

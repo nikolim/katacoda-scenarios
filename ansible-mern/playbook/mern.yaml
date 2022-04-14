@@ -24,6 +24,8 @@
       docker_container:
         name: MongoDB
         image: mongo
+        ports: 
+          - 28017:28017
         networks: 
           - name: mynetwork
             ipv4_address: 173.18.0.2
@@ -49,6 +51,8 @@
       docker_container:
         name: Node
         image: node
+        ports: 
+          - 4000:4000
         networks:
           - name: mynetwork
             ipv4_address: 173.18.0.3
@@ -59,7 +63,7 @@
         name: Node
         ansible_connection: docker
 
-    # # # create seperate play to create node container
+    # create seperate play to create node container
     - name: Clone react-frontend repository
       git:
        repo: https://github.com/nikolim/minimal-react

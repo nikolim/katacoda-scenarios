@@ -11,15 +11,15 @@
       pip:
         name: docker-py
 
-    # creates network 172.18.0.0/28
-    # gateway 172.18.0.1
+    # # creates network 172.18.0.0/28
+    # # gateway 172.18.0.1
     - name: Create docker network
       docker_network:
         name: mynetwork
         ipam_config:
           - subnet: 172.18.0.0/28
 
-    # create seperate play to create mongo container
+    # # create seperate play to create mongo container
     - name: Create Mongo Container
       docker_container:
         name: MongoDB
@@ -28,7 +28,7 @@
           - name: mynetwork1
           - ipv4_address: 172.18.0.2
 
-    # might have to control the container afterwards again
+    # # might have to control the container afterwards again
     - name: Add mongo container to inventory
       add_host:
         name: MongoDB
@@ -45,18 +45,24 @@
     - name: Build node container 
       shell: "(cd ~/node-express-mongo-example && docker build -t node .)"
 
-    - name: Run node docker container
+    # - name: Run node docker container
       docker_container:
         name: Node
         image: node
         networks:
           - name: mynetwork
           - ipv4_address: 172.18.0.3
+          
+    # # might have to control the container afterwards again
+    - name: Add node container to inventory
+      add_host:
+        name: Node
+        ansible_connection: docker
 
-    # # create seperate play to create node container
+    # # # create seperate play to create node container
     - name: Clone react-frontend repository
       git:
-       repo: https://github.com/nikolim/react-frontend
+       repo: https://github.com/nikolim/minimal-react
        dest: ~/react-frontend
        clone: yes
        update: yes
@@ -74,3 +80,8 @@
           - name: mynetwork
           - ipv4_address: 172.18.0.4
        
+    # # might have to control the container afterwards again
+    - name: Add react container to inventory
+      add_host:
+        name: React
+        ansible_connection: docker

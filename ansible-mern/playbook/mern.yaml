@@ -10,10 +10,14 @@
     - name: Install Docker-py
       pip:
         name: docker-py
-    
-    - name: Create docker network 
-      docker_network: 
+
+    # creates network 172.18.0.0/28
+    # gateway 172.18.0.1
+    - name: Create docker network
+      docker_network:
         name: mynetwork
+        ipam_config:
+          - subnet: 172.18.0.0/28
 
     # create seperate play to create mongo container
     - name: Create Mongo Container
@@ -21,11 +25,10 @@
         name: MongoDB
         image: mongo
         networks: 
-          - name: mynetwork
-          - ipv4_address: "10.0.0.1"
-        ports: 
-            - 27017:27017
+          - name: mynetwork1
+          - ipv4_address: 172.18.0.2
 
+    # might have to control the container afterwards again
     - name: Add mongo container to inventory
       add_host:
         name: MongoDB
@@ -35,16 +38,39 @@
     - name: Clone node-express-mongo repository
       git:
        repo: https://github.com/nikolim/node-express-mongo.git
-       dest: /home/node-express-mongo-example
+       dest: ~/node-express-mongo-example
        clone: yes
        update: yes
-       
-       # TODO Build and run the container
-     
-     # create seperate play to create react container
+    
+    - name: Build node container 
+      shell: "(cd ~/node-express-mongo-example && docker build -t node .)"
+
+    - name: Run node docker container
+      docker_container:
+        name: Node
+        image: node
+        networks:
+          - name: mynetwork
+          - ipv4_address: 172.18.0.3
+
+    # # create seperate play to create node container
     - name: Clone react-frontend repository
       git:
-       repo: https://github.com/nikolim/node-express-mongo.git
-       dest: /home/react-frontend
+       repo: https://github.com/nikolim/react-frontend
+       dest: ~/react-frontend
+       clone: yes
+       update: yes
+    
+    - name: Build node container 
+      shell: "(cd ~/react-frontend && docker build -t react .)"
+
+    - name: Run react docker container
+      docker_container:
+        name: React
+        image: react
+        exposed_ports: 
+          - 3000
+        networks:
+          - name: mynetwork
+          - ipv4_address: 172.18.0.4
        
-         # TODO Build and run the container

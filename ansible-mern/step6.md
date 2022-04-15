@@ -4,11 +4,14 @@
 
 For demo purposes we created a very simple node.js server connected to a mogoDB database. To make the backend accessible to the frontend we use express.js
 
+`mkdir tasks`{{execute HOST1}}
+`cd tasks`{{execute HOST1}}
+
 We start by creating a new file for the task:
-`touch tasks/node-express.yml`{{execute HOST1}}
+`touch node-express.yml`{{execute HOST1}}
 
 Afterwards we open the file
-`tasks/node-express.yml`{{open}}
+`node-express.yml`{{open}}
 
 ### Cloning the git repository
 
@@ -18,11 +21,11 @@ Additionally, we set update to true to make sure we get the latest version of th
 
 <pre class="file" data-target="clipboard">
 - name: Clone node-express-mongo repository
-	git:
-	repo: https://github.com/nikolim/node-express-mongo.git
-	dest: ~/node-express-mongo-example
-	clone: yes
-	update: yes
+  git:
+    repo: https://github.com/nikolim/node-express-mongo.git
+    dest: ~/node-express-mongo-example
+    clone: yes
+    update: yes
 </pre>
 
 Paste the snippet into the editor.
@@ -61,7 +64,4 @@ To make the routing inside the virtual network easier we assign a fixed ip addre
 </pre>
 
 Paste the snippet into the editor.
-
-
-
 

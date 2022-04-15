@@ -65,3 +65,11 @@ To make the routing inside the virtual network easier we assign a fixed ip addre
 
 Paste the snippet into the editor.
 
+### Optional: connect container to Ansible inventory
+
+<pre class="file" data-target="clipboard">
+- name: Add node-express container to inventory
+  add_host:
+    name: Node
+    ansible_connection: docker
+</pre>

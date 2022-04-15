@@ -39,3 +39,6 @@ By sending a GET request we retrieve the data from the database:
 `curl -X GET $server:4000/data`{{execute HOST1}}
 
 Great seems like our backend is working!
+
+
+Note: we can not access this port from outside, since the Kataconda environment enforces https and setting it up is outside the scope of this tutorial.

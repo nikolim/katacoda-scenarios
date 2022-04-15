@@ -28,7 +28,7 @@ Paste the snippet into the editor.
 
 Luckily also this repository contains a Dockerfile.
 Let's have a quick look at the Dockerfile.
-`cat ~/react-frontend/Dockerfile`{{open}}
+`cat ~/react-frontend/Dockerfile`{{execute HOST1}}
 We are using the alpine image for our container and install React with npm using package.json.
 
 Afterwards lets build the container with a simple command. Note that the docker module contains a build command but is deprecated.
@@ -58,7 +58,6 @@ To make the routing inside the virtual network easier we assign a fixed ip addre
 </pre>
 
 Paste the snippet into the editor.
-
 
 ### Optional: connect container to Ansible inventory
 

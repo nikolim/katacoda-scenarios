@@ -34,7 +34,7 @@ Paste the snippet into the editor.
 
 Luckily for us the repository contains a Dockerfile, and we can use the docker module to build the container.
 Let's have a quick look at the Dockerfile.
-`cat ~/node-express-mongo-example/Dockerfile`{{open}}
+`cat ~/node-express-mongo-example/Dockerfile`{{execute HOST1}}
 We are using a node image for our container and install the express.js framework with npm and package.json.
 
 Afterwards lets build the container with a simple command. Note that the docker module contains a build command but is deprecated.

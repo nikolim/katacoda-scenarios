@@ -1,27 +1,52 @@
-# JUST FOR DEMO PURPOSE
+Ansible follows the concept of "infrastrcuture as code". As you write everything down in simple script form, ansible will follow your instrcutions and take care of application deployment, updates, etc on your servers and workstations.
 
-Create file mern.yml	
-`touch mern.yml`{{execute HOST1}}
+Ansible works by connecting and pushing out small programs(modules) to your nodes. These modules are written in playbook files, so that they can be saved and re-used. It's also possible to use Ansible directly with ad-hoc commands and scripting to perform tasks. To do this, you will need to run a command or call a module directly from the command line.
 
-Copy playbook.yml to mern.yml
+In this tutorial, Ansible has already been installed on the machine. We can verify the installation by running the command:
 
-Run playbook
-`ansible-playbook mern.yml`{{execute HOST1}}
+`ansible --version`{{execute HOST1}}
 
-## Test the node-api with mongodb database
+## Connect Ansible to your nodes
 
-`server=127.0.0.1`{{execute HOST1}}
+Ansible is agentless, which means you don't need any software installed on your nodes to use Ansible. It uses SSH protocol to connects and run tasks on remote nodes. However, in this tutorial, all the operations of Ansible are on the local machine, so no connection needs to be made.
 
-`msg="DevOps rocks!"`{{execute HOST1}}
+You can learn how to handle the connection between Ansible and remote nodes with tutorial: [Ansible Bootstrapping](https://www.katacoda.com/oliverveits/scenarios/ansible-bootstrap).
 
+## Set up inventory
 
-Sending request to nodejs express server which will insert the data into mongodb
-`curl -X POST -H "Content-Type: application/json"     -d '{"name": "DevOps rocks!"}' $server:4000/data`{{execute HOST1}}
+Ansible manages hosts by inventory. When executed, Ansible will look up for target hosts listed in inventory files. Ansible will generate a default inventory at /etc/ansible/hosts. You can manage hosts in this default file or create your own inventories.
 
-Get request to retrieve the data from mongodb 
-`curl -X GET $server:4000/data`{{execute HOST1}}
+We can add our localhost to the default inventory:
 
+```
+cat << ... > /etc/ansible/hosts
+[local]
+localhost ansible_connection=local
+...
+```{{execute HOST1}}
+```
 
-## Test the react app
+To test your inventory, simply run the command:\
+`ansible local -m ping`{{execute HOST1}}
 
-Press on "+" button and "Select port to view on Host1" and then select port 3000. 
+## Write playbook
+
+Ansible playbooks are consisted of modules of tasks you want to run. They are implemented in YAML format. 
+
+Below is a playbook example. Paste it to the editor and run it.
+
+<pre class="file" data-filename="example.yml" data-target="replace">---
+- hosts: localhost
+  remote_user: root
+  tasks:
+    - name: connection test
+      ping:
+      register: result
+    - name: show result
+      debug:
+        var: result
+</pre>
+
+`ansible-playbook example.yml`{{execute HOST1}}
+
+Before writing tasks, you need to declare which machines are the operating targets and as what user you are operating.

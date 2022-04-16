@@ -11,10 +11,12 @@ We can now append the newly created task to the playbook and run the following c
 
 `ansible-playbook mern.yml`{{execute HOST1}}
 
+We need some patience again for the task to complete.
+
 ### Open the webserver
 
-Click on the "+" button in your terminal and select "Select port to view on Host 1". 
-In the new tabs select the port "3000" and click "Open".
+Click on the **+** button at the top of your terminal and select **Select port to view on Host 1**. 
+In the new tabs select the port **3000** and click **Open**.
 You should see the React frontend running.
 
 Great seems like our frontend is also up and running!

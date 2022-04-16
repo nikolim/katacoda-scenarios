@@ -69,4 +69,6 @@ At the end of this step, as we've finished writing **mongodb.yml**, we add these
     - include: tasks/mongodb.yml
 </pre>
 
+Since we have to pull the docker image this can take a while (~60 seconds).
+
 `ansible-playbook mern.yml`{{execute HOST1}}

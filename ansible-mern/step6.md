@@ -11,17 +11,13 @@ We can now append the newly created task to the playbook and run the following c
 
 `ansible-playbook mern.yml`{{execute HOST1}}
 
-## Test the node-api with mongodb database
+Since we have to pull the docker image this can take a while (~60 seconds).
 
-We have set the IP of our node-express server to the following address:
-
-`server=173.18.0.3`{{execute HOST1}}
-
-`msg="DevOps rocks!`{{execute HOST1}}
+## Test the Backend
 
 Now we can send a POST request to our backend which will insert the data into the database:
 
-`curl -X POST -H "Content-Type: application/json" -d '{"name": "$msg"}' $server:4000/data`{{execute HOST1}}
+`curl -X POST -H "Content-Type: application/json" -d '{"name": "DevOps rocks!"}' 173.18.0.3:4000/data`{{execute HOST1}}
 
 By sending a GET request we retrieve the data from the database:
 

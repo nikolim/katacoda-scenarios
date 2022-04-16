@@ -5,11 +5,13 @@ Creating the final playbook is easy, we just to include all the tasks in the pla
 <pre class="file" data-filename="mern.yml" data-target="replace">---
 - name: Setup backend
   hosts: localhost
+  vars:
+     ansible_python_interpreter: /usr/bin/python3
   tasks:
-    - include: prerequisites.yml
-    - include: mongodb.yml
-    - include: node.yml
-    - include: react.yml
+    - include: tasks/prerequisites.yml
+    - include: tasks/mongodb.yml
+    - include: tasks/node.yml
+    - include: tasks/react.yml
 </pre>
 
 ## Checking the currently running containers
@@ -27,7 +29,7 @@ Now when we run the command again, the list should be empty
 
 `docker ps`{{execute HOST1}}
 
-## Running the complete playbook
+## Optional: Running the complete playbook with all tasks
 
 To make sure everything is working fine, we can now run the final playbook, which will execute all the tasks.
 Grab a cup of coffee, this can take a while.

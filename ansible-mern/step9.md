@@ -1,27 +1,34 @@
-# Creating the final playbook
+We have created all the necessary tasks.
+Creating the final playbook is easy, we just to include all the tasks in the playbook.
 
-Creating the final playbook is very easy, we just have to combine all the tasks we have created:
-`play.yml`{{open}}
 
-<pre class="file" data-target="clipboard">
+<pre class="file" data-filename="mern.yml" data-target="replace">---
 
 ---
 - name: Setup backend
   hosts: localhost
   tasks:
     - include: prerequisites.yml
-    - include: mongo.yml
-    - include: node-express.yml
+    - include: mongodb.yml
+    - include: node.yml
     - include: react.yml
 </pre>
 
-## Stop currently running docker containers
+## Checking the currently running containers
 
+Since we already started containers in previous steps, lets stop them all.
+To see the currently running containers, we can use the following command:
+`docker ps`{{execute HOST1}}
+
+To stop all the containers, we can use the following command:
 `docker stop $(docker ps -a -q)`{{execute HOST1}}
+
+Now when we run the command again, the list should be empty:
+`docker ps`{{execute HOST1}}
 
 ## Running the complete playbook
 
-Now it is time to run the whole playbook:
-`ansible-playbook play.yml`{{execute HOST1}}
+To make sure everything is working fine, we can now run the final playbook, which will execute all the tasks.
+`ansible-playbook mern.yml`{{execute HOST1}}
 
 

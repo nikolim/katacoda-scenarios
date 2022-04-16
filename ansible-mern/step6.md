@@ -1,44 +1,27 @@
-# Create and test backend
+We can now append the newly created task to the playbook and run the following command so that Ansible will execute all these tasks we've written:
 
-## Create minimal playbook 
-
-We start by creating a new file for the task:
-`touch play.yml`{{execute HOST1}}
-
-Afterwards we open the file
-`play.yml`{{open}}
-
-Copy the following commands into the file:
-<pre class="file" data-target="clipboard">
-
----
-- name: Setup backend
-  hosts: localhost
+<pre class="file" data-filename="mern.yml" data-target="replace">---
+- hosts: localhost
+  remote_user: root
   tasks:
-    - include: node-express.yml
+    - include: tasks/node.yml
 </pre>
 
-Afterwards we can run the playbook: 
-`ansible-playbook play.yml`{{execute HOST1}}
-
-## Verify the docker container is running
-
-First we verify that the backend container is running:
-`docker ps`{{execute HOST1}}
-We should be able to see our node container
+`ansible-playbook mern.yml`{{execute HOST1}}
 
 ## Test the node-api with mongodb database
 
-We set the ip address of the backend container. 
+We have set the IP of our node-express server to the following address:
+
 `server=173.18.0.3`{{execute HOST1}}
 
 Now we can send a POST request to our backend which will insert the data into the database:
+
 `curl -X POST -H "Content-Type: application/json" -d '{"name": "DevOps rocks!"}' $server:4000/data`{{execute HOST1}}
 
 By sending a GET request we retrieve the data from the database:
+
 `curl -X GET $server:4000/data`{{execute HOST1}}
 
-Great seems like our backend is working!
+Great our node-express backend is working!
 
-
-Note: we can not access this port from outside, since the Kataconda environment enforces https and setting it up is outside the scope of this tutorial.

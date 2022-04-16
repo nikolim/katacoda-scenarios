@@ -16,20 +16,19 @@ You can learn how to handle the connection between Ansible and remote nodes with
 
 Ansible manages hosts by inventory. When executed, Ansible will look up for target hosts listed in inventory files. Ansible will generate a default inventory at /etc/ansible/hosts. You can manage hosts in this default file or create your own inventories.
 
-We can add our localhost to the default inventory:
+We can add our localhost to the default inventory by editing the file **/etc/ansible/hosts**:
 
-```
-cat << ... > /etc/ansible/hosts
+<pre class="file" data-filename="/etc/ansible/hosts" data-target="replace">
 [local]
 localhost ansible_connection=local
-...
-```{{execute HOST1}}
-```
+</pre>
 
 To test your inventory, simply run the command:\
 `ansible local -m ping`{{execute HOST1}}
 
-## Write playbook
+You see that we have successfully pinged our target host.
+
+## Write example playbook
 
 Ansible playbooks are consisted of modules of tasks you want to run. They are implemented in YAML format. 
 
@@ -50,3 +49,19 @@ Below is a playbook example. Paste it to the editor and run it.
 `ansible-playbook example.yml`{{execute HOST1}}
 
 Before writing tasks, you need to declare which machines are the operating targets and as what user you are operating.
+
+## Write MERN playbook
+
+Let's create a template playbook for the tasks which we are going to extend in the course of this tutorial.
+
+<pre class="file" data-filename="mern.yml" data-target="replace">---
+- hosts: localhost
+  remote_user: root
+  tasks:
+    # - include: prerequisites.yml
+    # - include: mongodb.yml
+    # - include: node.yml  
+    # - include: react.yml
+</pre>
+
+For simplicity, we will create separate files for each step.

@@ -1,25 +1,24 @@
-# Set up the backend server
-
 ## Node.js and express.js
 
-For demo purposes we created a very simple node.js server connected to a mogoDB database. To make the backend accessible to the frontend we use express.js
-
-`mkdir tasks`{{execute HOST1}}
-`cd tasks`{{execute HOST1}}
+For demo purposes we created a very simple Node.js server connected to a mongo-database ([Repo](https://github.com/nikolim/node-express-mongo))
+To make the backend accessible to the frontend we use Express.js
 
 We start by creating a new file for the task:
-`touch node-express.yml`{{execute HOST1}}
+`touch tasks/node`{{execute HOST1}}
 
 Afterwards we open the file
-`node-express.yml`{{open}}
+`tasks/node.yml`{{open}}
 
 ### Cloning the git repository
 
-Afterwards we want to clone the repository from Github. We are using the ansible git module to do this.
+Afterwards we want to clone the repository from Github. 
+We are using the ansible git module to do this.
 We have to define the repository url and path where we want to store the repository.
 Additionally, we set update to true to make sure we get the latest version of the repository.
 
-<pre class="file" data-target="clipboard">
+Copy the following YAML to **tasks/node.yml**:
+
+<pre class="file" data-filename="tasks/node.yml" data-target="replace">
 - name: Clone node-express-mongo repository
   git:
     repo: https://github.com/nikolim/node-express-mongo.git
@@ -28,30 +27,30 @@ Additionally, we set update to true to make sure we get the latest version of th
     update: yes
 </pre>
 
-Paste the snippet into the editor.
-
 ### Building docker container
 
 Luckily for us the repository contains a Dockerfile, and we can use the docker module to build the container.
 Let's have a quick look at the Dockerfile.
 `cat ~/node-express-mongo-example/Dockerfile`{{execute HOST1}}
-We are using a node image for our container and install the express.js framework with npm and package.json.
+We are using the node image for our container and install Express.js with npm using package.json.
 
-Afterwards lets build the container with a simple command. Note that the docker module contains a build command but is deprecated.
-<pre class="file" data-target="clipboard">
+Copy the following YAML to **tasks/node.yml**:
+
+Afterwards we can build the container with a simple shell command.
+<pre class="file" data-filename="tasks/node.yml" data-target="append">
+
 - name: Build node container 
   shell: "(cd ~/node-express-mongo-example && docker build -t node .)"
 </pre>
 
-Paste the snippet into the editor.
-
 ### Running the container
 
-Now it's time to run the container.
-We are using the name of the image we just built. Additionally, connect the container to the docker network and expose port 4000.
+Now it's time to run the container. We are using the name of the image we just built. Additionally, connect the container to the docker network and expose port 4000.
 To make the routing inside the virtual network easier we assign a fixed ip address to the container.
 
-<pre class="file" data-target="clipboard">
+Copy the following YAML to **tasks/node.yml**:
+
+<pre class="file" data-filename="tasks/node.yml" data-target="append">
 - name: Run node docker container
   docker_container:
     name: Node
@@ -63,11 +62,13 @@ To make the routing inside the virtual network easier we assign a fixed ip addre
         ipv4_address: 173.18.0.3
 </pre>
 
-Paste the snippet into the editor.
-
 ### Optional: connect container to Ansible inventory
 
-<pre class="file" data-target="clipboard">
+Similar to the previous steps, we can connect the container to the Ansible inventory.
+
+Copy the following YAML to **tasks/node.yml**:
+
+<pre class="file" data-filename="tasks/node.yml" data-target="append">
 - name: Add node-express container to inventory
   add_host:
     name: Node

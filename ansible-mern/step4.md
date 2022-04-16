@@ -26,6 +26,21 @@ Docker provides a MongoDB container, which makes it extremely convenient to set 
 We connected the container to the docker network with a fixed ip and expose port 28017. This task will create and start the container.
 
 
+## Add container to inventory
+
+To manage MangoDB container more easily in the future, we can also add this container to inventory. 
+
+Copy the following YAML to **mongodb.yml**:
+
+<pre class="file" data-filename="mongodb.yml" data-target="append">
+
+    - name: Add MongoDB container to inventory
+      add_host:
+        name: MongoDB
+        ansible_connection: docker
+      changed_when: false
+</pre>
+
 ## Test the database
 
 Now lets test whether our MongDB is actually created and running.
@@ -35,15 +50,15 @@ Copy the following YAML to **mongodb.yml**:
 <pre class="file" data-filename="mongodb.yml" data-target="append">
 
     - name: Show MongoDB version
-      community.docker.docker_container_exec:
-        container: MongoDB
-        command: mongod --version
+      delegate_to: MongoDB
+      raw: mongod --version
       register: result
-
+    
     - name: Print result
-      debug:
+      debug: 
         var: result.stdout
 </pre>
 
-Run the following command:
+Finally, run the following command so that Ansible will execute all these tasks we've written:
+
 `ansible-playbook mongodb.yml`{{execute HOST1}}

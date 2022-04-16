@@ -1,70 +1,34 @@
-# Set up frontend
+# Create and test backend
 
-## React.js
+## Create minimal playbook
 
-For demo purposes, we create a very basic React.js app.
+We change the playbook to now include the newly create tasks.
+`play.yml`{{open}}
 
-We start by creating a new file for the task:
-`touch react.yml`{{execute HOST1}}
-
-Afterwards we open the file
-`react.yml`{{open}}
-
-### Cloning the git repository
-
-Analogously to the previous step, we clone the repository using the Ansible git module.
+Copy the following commands into the file (overwrite the old content):
 
 <pre class="file" data-target="clipboard">
-  - name: Clone react-frontend repository
-    git:
-      repo: https://github.com/nikolim/minimal-react
-      dest: ~/react-frontend
-      clone: yes
-      update: yes
-</pre>
-Paste the snippet into the editor.
 
-### Building docker container
-
-Luckily also this repository contains a Dockerfile.
-Let's have a quick look at the Dockerfile.
-`cat ~/react-frontend/Dockerfile`{{execute HOST1}}
-We are using the alpine image for our container and install React with npm using package.json.
-
-Afterwards lets build the container with a simple command. Note that the docker module contains a build command but is deprecated.
-<pre class="file" data-target="clipboard">
-- name: Build react container 
-  shell: "(cd ~/react-frontend && docker build -t react .)"
+---
+- name: Setup backend
+  hosts: localhost
+  tasks:
+    - include: react.yml
 </pre>
 
-Paste the snippet into the editor.
+Afterwards we can run the playbook:
+`ansible-playbook play.yml`{{execute HOST1}}
 
-### Running the container
+## Verify the docker container is running
 
-Now it's time to run the container.
-We are using the name of the image we just built. Additionally, connect the container to the docker network and expose port 4000.
-To make the routing inside the virtual network easier we assign a fixed ip address to the container.
+First we verify that the frontend container is running (we should also still the backend):
+`docker ps`{{execute HOST1}}
+We should be able to see our React container
 
-<pre class="file" data-target="clipboard">
-- name: Run react docker container
-  docker_container:
-    name: React
-    image: react
-    ports: 
-      - 3000:3000
-    networks:
-      - name: mynetwork
-        ipv4_address: 173.18.0.4
-</pre>
+### Open the webserver
 
-Paste the snippet into the editor.
+Click on the "+" button in your terminal and select "Select port to view on Host 1". 
+In the new tabs select the port "3000" and click "Open".
+You should be see the React frontend running.
 
-### Optional: connect container to Ansible inventory
-
-<pre class="file" data-target="clipboard">
-- name: Add react container to inventory
-  add_host:
-    name: React
-    ansible_connection: docker
-</pre>
-
+Great seems like our frontend is also up and running!

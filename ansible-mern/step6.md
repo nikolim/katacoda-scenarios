@@ -21,7 +21,7 @@ Now we can send a POST request to our backend which will insert the data into th
 
 By sending a GET request we retrieve the data from the database:
 
-`curl -X GET $server:4000/data`{{execute HOST1}}
+`curl -X GET 127.0.0.1:4000/data`{{execute HOST1}}
 
 Great our node-express backend is working!
 

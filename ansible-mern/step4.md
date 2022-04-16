@@ -20,12 +20,12 @@ Docker provides a MongoDB container, which makes it extremely convenient to set 
         ipv4_address: 173.18.0.2
 </pre>
 
-We connected the container to the docker network with a fixed ip and expose port 28017. This task will create and start the container.
+We connected the container to the docker network with a fixed IP and expose port 28017. This task will create and start the container.
 
 
 ## Add container to inventory
 
-To manage MangoDB container more easily in the future, we can also add this container to inventory. 
+To manage MongoDB container more easily in the future, we can also add this container to inventory. 
 
 Copy the following YAML to **tasks/mongodb.yml**:
 
@@ -40,7 +40,7 @@ Copy the following YAML to **tasks/mongodb.yml**:
 
 ## Test the database
 
-Now lets test whether our MongDB is actually created and running.
+Now let's test whether our MongoDB is actually created and running.
 
 Copy the following YAML to **tasks/mongodb.yml**:
 
@@ -58,7 +58,7 @@ Copy the following YAML to **tasks/mongodb.yml**:
 
 ## Run the playbook
 
-At the end of this step, as we've finished writing **mongodb.yml**, we add these steps to the playbook and execute them:
+At the end of this step, as we've finished writing **mongodb.yml**, we put these steps to the playbook and execute them:
 
 <pre class="file" data-filename="mern.yml" data-target="replace">---
 - hosts: localhost

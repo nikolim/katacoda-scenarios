@@ -1,4 +1,4 @@
-Ansible follows the concept of "infrastrcuture as code". As you write everything down in simple script form, ansible will follow your instrcutions and take care of application deployment, updates, etc on your servers and workstations.
+Ansible follows the concept of "infrastructure as code". As you write everything down in simple script form, ansible will follow your instructions and take care of application deployment, updates, etc on your servers and workstations.
 
 Ansible works by connecting and pushing out small programs(modules) to your nodes. These modules are written in playbook files, so that they can be saved and re-used. It's also possible to use Ansible directly with ad-hoc commands and scripting to perform tasks. To do this, you will need to run a command or call a module directly from the command line.
 

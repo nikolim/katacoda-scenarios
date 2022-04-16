@@ -18,10 +18,13 @@ Ansible manages hosts by inventory. When executed, Ansible will look up for targ
 
 We can add our localhost to the default inventory by editing the file **/etc/ansible/hosts**:
 
-<pre class="file" data-filename="/etc/ansible/hosts" data-target="replace">
+```
+cat << ... > /etc/ansible/hosts
 [local]
 localhost ansible_connection=local
-</pre>
+...
+```{{execute HOST1}}
+```
 
 To test your inventory, simply run the command:\
 `ansible local -m ping`{{execute HOST1}}

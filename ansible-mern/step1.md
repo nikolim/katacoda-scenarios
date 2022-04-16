@@ -8,13 +8,13 @@ In this tutorial, Ansible has already been installed on the machine. We can veri
 
 ## Connect Ansible to your nodes
 
-Ansible is agentless, which means you don't need any software installed on your nodes to use Ansible. It uses SSH protocol to connects and run tasks on remote nodes. However, in this tutorial, all the operations of Ansible are on the local machine, so no connection needs to be made.
+Ansible is agentless, which means you don't need any software installed on your nodes to use Ansible. It uses SSH protocol to connect and run tasks on remote nodes. However, in this tutorial, all the operations of Ansible are on the local machine, so no connection needs to be made.
 
 You can learn how to handle the connection between Ansible and remote nodes with tutorial: [Ansible Bootstrapping](https://www.katacoda.com/oliverveits/scenarios/ansible-bootstrap).
 
 ## Set up inventory
 
-Ansible manages hosts by inventory. When executed, Ansible will look up for target hosts listed in inventory files. Ansible will generate a default inventory at /etc/ansible/hosts. You can manage hosts in this default file or create your own inventories.
+Ansible manages hosts by inventory. When executed, Ansible will look up target hosts listed in inventory files. Ansible will generate a default inventory at /etc/ansible/hosts. You can manage hosts in this default file or create your own inventories.
 
 We can add our localhost to the default inventory by editing the file **/etc/ansible/hosts**:
 
@@ -33,7 +33,7 @@ You see that we have successfully pinged our target host.
 
 ## Write example playbook
 
-Ansible playbooks are consisted of modules of tasks you want to run. They are implemented in YAML format. 
+Ansible playbooks consist of modules of tasks you want to run. They are implemented in YAML format. 
 
 Below is a playbook example. Paste it to the editor and run it.
 

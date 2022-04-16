@@ -1,5 +1,5 @@
 We have created all the necessary tasks.
-Creating the final playbook is easy, we just to include all the tasks in the playbook.
+Creating the final playbook is easy, we just have to include all the tasks in the playbook.
 
 
 <pre class="file" data-filename="mern.yml" data-target="replace">---
@@ -16,7 +16,7 @@ Creating the final playbook is easy, we just to include all the tasks in the pla
 
 ## Checking the currently running containers
 
-Since we already started containers in previous steps, lets stop them all.
+Since we already started containers in previous steps, let's stop them all.
 To see the currently running containers, we can use the following command
 
 `docker ps`{{execute HOST1}}

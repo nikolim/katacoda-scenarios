@@ -19,4 +19,4 @@ Click on the **+** button at the top of your terminal and select **Select port t
 In the new tabs select the port **3000** and click **Open**.
 You should see the React frontend running.
 
-Great seems like our frontend is also up and running!
+Great seems like our front end is also up and running!

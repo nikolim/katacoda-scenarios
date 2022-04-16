@@ -56,6 +56,7 @@ Before writing tasks, you need to declare which machines are the operating targe
 ## Write MERN playbook
 
 Let's create a template playbook for the tasks which we are going to extend in the course of this tutorial.
+(Note that the installed Ansible is configured to use Python2)
 
 `touch mern.yml`{{execute HOST1}}
 
@@ -64,6 +65,8 @@ And paste it to the editor.
 <pre class="file" data-filename="mern.yml" data-target="replace">---
 - hosts: localhost
   remote_user: root
+  vars:
+     ansible_python_interpreter: /usr/bin/python3
   tasks:
     # - include: prerequisites.yml
     # - include: mongodb.yml

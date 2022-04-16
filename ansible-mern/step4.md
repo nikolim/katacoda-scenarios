@@ -63,6 +63,8 @@ At the end of this step, as we've finished writing **mongodb.yml**, we add these
 <pre class="file" data-filename="mern.yml" data-target="replace">---
 - hosts: localhost
   remote_user: root
+  vars:
+     ansible_python_interpreter: /usr/bin/python3
   tasks:
     - include: tasks/mongodb.yml
 </pre>

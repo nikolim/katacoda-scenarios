@@ -3,6 +3,8 @@ We can now append the newly created task to the playbook and run the following c
 <pre class="file" data-filename="mern.yml" data-target="replace">---
 - hosts: localhost
   remote_user: root
+  vars:
+     ansible_python_interpreter: /usr/bin/python3
   tasks:
     - include: tasks/node.yml
 </pre>

@@ -3,10 +3,12 @@
 For demo purposes we created a very simple Node.js server connected to a mongo-database ([Repo](https://github.com/nikolim/node-express-mongo))
 To make the backend accessible to the frontend we use Express.js
 
-We start by creating a new file for the task:
+We start by creating a new file for the task
+
 `touch tasks/node`{{execute HOST1}}
 
 Afterwards we open the file
+
 `tasks/node.yml`{{open}}
 
 ### Cloning the git repository

@@ -37,7 +37,7 @@ Ansible playbooks are consisted of modules of tasks you want to run. They are im
 
 Below is a playbook example. Paste it to the editor and run it.
 
-<pre class="file" data-filename="example.yml" data-target="replace">---
+<pre class="file" data-filename="example.yml" data-target="append">---
 - hosts: localhost
   remote_user: root
   tasks:
@@ -57,7 +57,11 @@ Before writing tasks, you need to declare which machines are the operating targe
 
 Let's create a template playbook for the tasks which we are going to extend in the course of this tutorial.
 
-<pre class="file" data-filename="mern.yml" data-target="replace">---
+`touch mern.yml`{{execute HOST1}}
+
+And paste it to the editor.
+
+<pre class="file" data-filename="mern.yml" data-target="append">---
 - hosts: localhost
   remote_user: root
   tasks:

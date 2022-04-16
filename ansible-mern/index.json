@@ -7,8 +7,7 @@
     "steps": [
       {
         "title": "Work with Ansible",
-        "text": "step1.md",
-        "courseData": "init.sh"
+        "text": "step1.md"
       },
       {
         "title": "What is MERN?",
@@ -56,8 +55,9 @@
   },
   "environment": {
     "uilayout": "editor-terminal",
-    "uieditorpath": "~",
-    "dashboards": [{"name": "Display 3000", "port": 3000}]
+    "dashboards": [{"name": "Display 3000", "port": 3000}],
+    "hideHiddenFiles": true,
+    "exclusionPatterns": ["~/snap"]
   },
   "backend": {
     "imageid": "ubuntu:2004"

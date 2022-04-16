@@ -56,7 +56,9 @@ Copy the following YAML to **tasks/mongodb.yml**:
     var: result.stdout
 </pre>
 
-Finally, append the newly created task to the playbook and run the following command so that Ansible will execute all these tasks we've written:
+## Run the playbook
+
+At the end of this step, as we've finished writing **mongodb.yml**, we add these steps to the playbook and execute them:
 
 <pre class="file" data-filename="mern.yml" data-target="replace">---
 - hosts: localhost

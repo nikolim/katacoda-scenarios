@@ -2,10 +2,12 @@
 
 For demo purposes, we create a very basic React app ([Repo](https://github.com/nikolim/minimal-react)).
 
-We start by creating a new file for the task:
+We start by creating a new file for the task
+
 `touch tasks/react.yml`{{execute HOST1}}
 
 Afterwards we open the file
+
 `tasks/react.yml`{{open}}
 
 ### Cloning the git repository
@@ -27,7 +29,9 @@ Copy the following YAML to **tasks/react.yml**:
 
 Luckily also this repository contains a Dockerfile.
 Let's have a quick look at the Dockerfile.
+
 `cat ~/react-frontend/Dockerfile`{{execute HOST1}}
+
 We are using the alpine image for our container and install React with npm using package.json.
 
 Copy the following YAML to **tasks/react.yml**:

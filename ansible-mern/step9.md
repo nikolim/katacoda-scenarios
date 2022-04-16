@@ -5,8 +5,6 @@ Creating the final playbook is easy, we just have to include all the tasks in th
 <pre class="file" data-filename="mern.yml" data-target="replace">---
 - name: Setup backend
   hosts: localhost
-  vars:
-     ansible_python_interpreter: /usr/bin/python3
   tasks:
     - include: tasks/prerequisites.yml
     - include: tasks/mongodb.yml

@@ -22,6 +22,9 @@ We can add our localhost to the default inventory by editing the file **/etc/ans
 cat << ... > /etc/ansible/hosts
 [local]
 localhost ansible_connection=local
+
+[local:vars]
+ansible_python_interpreter=/usr/bin/python3
 ...
 ```{{execute HOST1}}
 ```
@@ -65,8 +68,6 @@ And paste it to the editor.
 <pre class="file" data-filename="mern.yml" data-target="replace">---
 - hosts: localhost
   remote_user: root
-  vars:
-     ansible_python_interpreter: /usr/bin/python3
   tasks:
     # - include: prerequisites.yml
     # - include: mongodb.yml

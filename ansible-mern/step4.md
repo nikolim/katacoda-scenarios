@@ -2,7 +2,7 @@ To start, we first create a new file **mongodb.yml** for this task, and open it:
 
 `touch tasks/mongodb.yml`{{execute HOST1}}
 
-`tasks/mongdb.yml`{{open}}
+`tasks/mongodb.yml`{{open}}
 
 ## Create MongoDB container
 

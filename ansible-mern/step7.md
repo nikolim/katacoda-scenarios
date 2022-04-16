@@ -28,11 +28,6 @@ Copy the following YAML to **tasks/react.yml**:
 ### Building docker container
 
 Luckily also this repository contains a Dockerfile.
-Let's have a quick look at the Dockerfile.
-
-`cat ~/react-frontend/Dockerfile`{{execute HOST1}}
-
-We are using the alpine image for our container and install React with npm using package.json.
 
 Copy the following YAML to **tasks/react.yml**:
 

@@ -3,8 +3,6 @@ Creating the final playbook is easy, we just to include all the tasks in the pla
 
 
 <pre class="file" data-filename="mern.yml" data-target="replace">---
-
----
 - name: Setup backend
   hosts: localhost
   tasks:
@@ -32,6 +30,7 @@ Now when we run the command again, the list should be empty
 ## Running the complete playbook
 
 To make sure everything is working fine, we can now run the final playbook, which will execute all the tasks.
+Grab a cup of coffee, this can take a while.
 
 `ansible-playbook mern.yml`{{execute HOST1}}
 

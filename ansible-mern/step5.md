@@ -32,9 +32,6 @@ Copy the following YAML to **tasks/node.yml**:
 ### Building docker container
 
 Luckily for us the repository contains a Dockerfile, and we can use the docker module to build the container.
-Let's have a quick look at the Dockerfile.
-`cat ~/node-express-mongo-example/Dockerfile`{{execute HOST1}}
-We are using the node image for our container and install Express.js with npm using package.json.
 
 Copy the following YAML to **tasks/node.yml**:
 

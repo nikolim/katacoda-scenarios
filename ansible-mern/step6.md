@@ -15,9 +15,11 @@ We have set the IP of our node-express server to the following address:
 
 `server=173.18.0.3`{{execute HOST1}}
 
+`msg="DevOps rocks!`{{execute HOST1}}
+
 Now we can send a POST request to our backend which will insert the data into the database:
 
-`curl -X POST -H "Content-Type: application/json" -d '{"name": "DevOps rocks!"}' $server:4000/data`{{execute HOST1}}
+`curl -X POST -H "Content-Type: application/json" -d '{"name": "$msg"}' $server:4000/data`{{execute HOST1}}
 
 By sending a GET request we retrieve the data from the database:
 

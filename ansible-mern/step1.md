@@ -37,7 +37,7 @@ Ansible playbooks are consisted of modules of tasks you want to run. They are im
 
 Below is a playbook example. Paste it to the editor and run it.
 
-<pre class="file" data-filename="example.yml" data-target="append">---
+<pre class="file" data-filename="example.yml" data-target="replace">---
 - hosts: localhost
   remote_user: root
   tasks:
@@ -61,7 +61,7 @@ Let's create a template playbook for the tasks which we are going to extend in t
 
 And paste it to the editor.
 
-<pre class="file" data-filename="mern.yml" data-target="append">---
+<pre class="file" data-filename="mern.yml" data-target="replace">---
 - hosts: localhost
   remote_user: root
   tasks:
